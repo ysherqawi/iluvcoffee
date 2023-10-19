@@ -21,6 +21,10 @@ import { COFFEE_BRANDS } from './coffees.constants';
 //Each consumer will receive a new dedicated instance of the provider
 // @Injectable({ scope: Scope.REQUEST }) //provides a new instance of the provider exclusively for each incoming request
 //the instance is automatically garbage collected after the request has completed processing
+// request scoped providers can inject the original request object. this is useful if we need access to request specific information
+// in the controller constructor @Inject(REQUEST) private readonly request: Request
+// request scoped providers may have an impact on performance
+// unless a provider must be request scoped it is always recommended that we use the default singleton scope whenever possible
 @Injectable()
 export class CoffeesService {
   constructor(
@@ -31,7 +35,7 @@ export class CoffeesService {
     private readonly connection: Connection,
     @Inject(COFFEE_BRANDS) coffeeBrands: string[],
   ) {
-    console.log(coffeeBrands);
+    console.log('CoffeeService instantiated');
   }
 
   findAll(paginationQuery: PaginationQueryDto) {
