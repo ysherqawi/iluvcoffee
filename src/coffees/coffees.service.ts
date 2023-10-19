@@ -4,6 +4,7 @@ import {
   //HttpStatus,
   Injectable,
   NotFoundException,
+  Scope,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Connection, Repository } from 'typeorm';
@@ -15,6 +16,11 @@ import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto';
 import { Event } from 'src/events/entities/event.entity';
 import { COFFEE_BRANDS } from './coffees.constants';
 
+// @Injectable({scope:Scope.DEFAULT}) // Singleton
+// @Injectable({scope:Scope.TRANSIENT}) // not shared across consumers.
+//Each consumer will receive a new dedicated instance of the provider
+// @Injectable({ scope: Scope.REQUEST }) //provides a new instance of the provider exclusively for each incoming request
+//the instance is automatically garbage collected after the request has completed processing
 @Injectable()
 export class CoffeesService {
   constructor(
