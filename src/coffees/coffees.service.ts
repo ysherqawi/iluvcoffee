@@ -35,7 +35,7 @@ export class CoffeesService {
     private readonly connection: Connection,
     @Inject(COFFEE_BRANDS) coffeeBrands: string[],
   ) {
-    console.log('CoffeeService instantiated');
+    //console.log('CoffeeService instantiated');
   }
 
   findAll(paginationQuery: PaginationQueryDto) {
