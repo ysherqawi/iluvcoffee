@@ -5,13 +5,14 @@ import { CoffeesModule } from './coffees/coffees.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
 import { ConfigModule } from '@nestjs/config';
-//import { DatabaseModule } from './database/database.module';
-
+import * as Joi from '@hapi/joi';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      //envFilePath:''
-      //ignoreEnvFile:true
+      validationSchema: Joi.object({
+        DATABASE_HOST: Joi.required(),
+        DATABASE_PORT: Joi.number().default(5432),
+      }),
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
@@ -25,7 +26,6 @@ import { ConfigModule } from '@nestjs/config';
     }),
     CoffeesModule,
     CoffeeRatingModule,
-    //DatabaseModule,
   ],
   controllers: [AppController],
   providers: [AppService],
