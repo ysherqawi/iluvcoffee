@@ -37,8 +37,8 @@ export class CoffeesService {
     private readonly configService: ConfigService, //@Inject(COFFEE_BRANDS) coffeeBrands: string[],
   ) {
     //console.log('CoffeeService instantiated');
-    const databaseHost = this.configService.get<string>(
-      'DATABASE_HOST',
+    const databaseHost = this.configService.get(
+      'database.host',
       'localhost', //default value
     );
     console.log(databaseHost);
