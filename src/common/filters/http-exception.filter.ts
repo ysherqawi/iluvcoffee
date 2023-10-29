@@ -1,11 +1,10 @@
-import { object } from '@hapi/joi';
 import {
   ArgumentsHost,
   Catch,
   ExceptionFilter,
   HttpException,
 } from '@nestjs/common';
-import e, { Response } from 'express';
+import { Response } from 'express';
 
 @Catch(HttpException)
 export class HttpExceptionFilter<T extends HttpException>
